@@ -1,4 +1,4 @@
-package com.sumutella.recipe.controllers;
+package com.sumutella.recipe.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
