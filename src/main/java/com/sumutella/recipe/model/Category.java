@@ -1,5 +1,7 @@
 package com.sumutella.recipe.model;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,8 +16,8 @@ import java.util.List;
  * @since 12/23/2019, Mon
  */
 @Entity
-@Setter
-@Getter
+@Data
+@EqualsAndHashCode(exclude = {"recipes"})
 public class Category extends BaseEntity {
     private String description;
 
