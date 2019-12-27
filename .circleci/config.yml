@@ -5,7 +5,7 @@ jobs:
       - image: circleci/openjdk:8-jdk
     working_directory: ~/repo
     environment:
-      - CIRCLE_COMPARE_URL: https://github.com/sumut/revisited-spring-boot-recipe-app/compare/078791d0c4b83384d908c1835c350f17fbcc1be6...abd707a4ed68836d7d3a4329ab3f8da6d71f6be7
+      - CIRCLE_COMPARE_URL: https://github.com/sumut/revisited-spring-boot-recipe-app
       - MAVEN_OPTS: -Xmx3200m
     steps:
       - checkout
