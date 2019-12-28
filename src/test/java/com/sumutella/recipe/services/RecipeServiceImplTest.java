@@ -1,5 +1,7 @@
 package com.sumutella.recipe.services;
 
+import com.sumutella.recipe.dto.RecipeDto;
+import com.sumutella.recipe.mapper.RecipeMapper;
 import com.sumutella.recipe.model.Recipe;
 import com.sumutella.recipe.repository.RecipeRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,12 +58,14 @@ class RecipeServiceImplTest {
 
         when(recipeRepository.findById(anyLong())).thenReturn(optionalRecipe);
 
-        Recipe recipeFoundById = recipeService.findById(1L);
+        RecipeDto recipeFoundById = recipeService.findById(1L);
 
         assertNotNull(recipeFoundById, "Null Recipe Returned");
         verify(recipeRepository, times(1)).findById(anyLong());
         verify(recipeRepository, never()).findAll();
 
     }
+
+
 
 }

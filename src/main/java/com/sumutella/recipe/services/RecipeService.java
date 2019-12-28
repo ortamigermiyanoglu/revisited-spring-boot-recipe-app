@@ -1,5 +1,6 @@
 package com.sumutella.recipe.services;
 
+import com.sumutella.recipe.dto.RecipeDto;
 import com.sumutella.recipe.model.Recipe;
 
 import java.util.List;
@@ -14,7 +15,8 @@ import java.util.Optional;
 public interface RecipeService {
 
     List<Recipe> getRecipes();
-    Recipe findById(Long id);
+    RecipeDto findById(Long id);
+    RecipeDto saveRecipe(RecipeDto recipeDto);
 
 
 

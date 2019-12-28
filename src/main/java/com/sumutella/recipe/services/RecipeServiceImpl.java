@@ -1,10 +1,14 @@
 package com.sumutella.recipe.services;
 
+import com.sumutella.recipe.dto.RecipeDto;
+import com.sumutella.recipe.mapper.RecipeMapper;
 import com.sumutella.recipe.model.Recipe;
 import com.sumutella.recipe.repository.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +22,7 @@ import java.util.Optional;
 @Service
 public class RecipeServiceImpl implements RecipeService {
     private final RecipeRepository recipeRepository;
+    private final RecipeMapper recipeMapper = Mappers.getMapper(RecipeMapper.class);
 
     public RecipeServiceImpl(RecipeRepository recipeRepository) {
         this.recipeRepository = recipeRepository;
@@ -33,12 +38,20 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public Recipe findById(Long id) {
+    public RecipeDto findById(Long id) {
         Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
         if (!optionalRecipe.isPresent()){
             throw new RuntimeException("Recipe Not Found");
         }
-        return optionalRecipe.get();
+        return recipeMapper.entityToDto(optionalRecipe.get());
+    }
+
+    @Override
+    @Transactional
+    public RecipeDto saveRecipe(RecipeDto recipeDto) {
+        Recipe savedRecipe = recipeRepository.save(recipeMapper.dtoToEntity(recipeDto));
+        log.debug("Saved RecipeId:" + savedRecipe.getId());
+        return recipeMapper.entityToDto(savedRecipe);
     }
 
 
