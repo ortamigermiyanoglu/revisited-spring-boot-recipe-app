@@ -3,6 +3,7 @@ package com.sumutella.recipe.services;
 import com.sumutella.recipe.model.Recipe;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author sumutella
@@ -13,6 +14,7 @@ import java.util.List;
 public interface RecipeService {
 
     List<Recipe> getRecipes();
+    Recipe findById(Long id);
 
 
 

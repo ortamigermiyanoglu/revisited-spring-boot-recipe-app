@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * @author sumutella
@@ -30,4 +31,15 @@ public class RecipeServiceImpl implements RecipeService {
         recipeRepository.findAll().forEach(recipes::add);
         return recipes;
     }
+
+    @Override
+    public Recipe findById(Long id) {
+        Optional<Recipe> optionalRecipe = recipeRepository.findById(id);
+        if (!optionalRecipe.isPresent()){
+            throw new RuntimeException("Recipe Not Found");
+        }
+        return optionalRecipe.get();
+    }
+
+
 }

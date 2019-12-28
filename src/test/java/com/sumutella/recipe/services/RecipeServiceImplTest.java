@@ -9,8 +9,9 @@ import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 /**
@@ -33,7 +34,7 @@ class RecipeServiceImplTest {
     }
 
     @Test
-    public void getRecipes() throws Exception{
+    public void getRecipesTest() throws Exception{
         Recipe recipe = new Recipe();
         List<Recipe> recipeList = new ArrayList<>();
         recipeList.add(recipe);
@@ -43,6 +44,23 @@ class RecipeServiceImplTest {
 
         assertEquals(recipes.size(), 1);
         verify(recipeRepository, times(1)).findAll();
+
+    }
+
+
+    @Test
+    public void getRecipeByIdTest() throws Exception{
+        Recipe recipe = new Recipe();
+        recipe.setId(1L);
+        Optional<Recipe> optionalRecipe=Optional.of(recipe);
+
+        when(recipeRepository.findById(anyLong())).thenReturn(optionalRecipe);
+
+        Recipe recipeFoundById = recipeService.findById(1L);
+
+        assertNotNull(recipeFoundById, "Null Recipe Returned");
+        verify(recipeRepository, times(1)).findById(anyLong());
+        verify(recipeRepository, never()).findAll();
 
     }
 
