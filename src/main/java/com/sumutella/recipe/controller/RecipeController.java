@@ -4,6 +4,7 @@ import com.sumutella.recipe.dto.RecipeDto;
 import com.sumutella.recipe.mapper.RecipeMapper;
 import com.sumutella.recipe.model.Recipe;
 import com.sumutella.recipe.services.RecipeService;
+import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
  * @time 8:33 AM
  * @since 12/28/2019, Sat
  */
+@Slf4j
 @Controller
 public class RecipeController {
     private final RecipeService recipeService;
@@ -47,6 +49,15 @@ public class RecipeController {
         RecipeDto savedRecipeDto = recipeService.saveRecipe(recipe);
 
         return "redirect:/recipe/" + savedRecipeDto.getId() + "/show";
+    }
+
+    @RequestMapping("recipe/{id}/delete")
+    public String deleteById(@PathVariable String id){
+
+        log.debug("Deleting id: " + id);
+
+        recipeService.deleteById(Long.valueOf(id));
+        return "redirect:/";
     }
 
 }
