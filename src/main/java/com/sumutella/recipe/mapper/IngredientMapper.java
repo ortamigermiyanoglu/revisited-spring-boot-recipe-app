@@ -3,6 +3,7 @@ package com.sumutella.recipe.mapper;
 import com.sumutella.recipe.dto.IngredientDto;
 import com.sumutella.recipe.model.Ingredient;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * @author sumutella
