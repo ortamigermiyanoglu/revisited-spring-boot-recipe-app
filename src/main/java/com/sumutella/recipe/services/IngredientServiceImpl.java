@@ -20,7 +20,6 @@ import java.util.Optional;
 @Service
 public class IngredientServiceImpl implements IngredientService {
 
-    private final IngredientMapper ingredientMapper = Mappers.getMapper(IngredientMapper.class);
     private final RecipeMapper recipeMapper = Mappers.getMapper(RecipeMapper.class);
     private final RecipeRepository recipeRepository;
 
