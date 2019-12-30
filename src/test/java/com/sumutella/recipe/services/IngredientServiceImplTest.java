@@ -25,7 +25,6 @@ import static org.mockito.Mockito.*;
  */
 class IngredientServiceImplTest {
 
-    RecipeMapper recipeMapper = Mappers.getMapper(RecipeMapper.class);
     @Mock
     RecipeRepository recipeRepository;
     IngredientService ingredientService;
@@ -40,7 +39,6 @@ class IngredientServiceImplTest {
 
     @Test
     void findIngredientByRecipeIdAndIngredientId() {
-        //given
         Recipe recipe = new Recipe();
         recipe.setId(1L);
 
