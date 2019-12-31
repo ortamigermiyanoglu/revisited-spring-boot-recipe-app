@@ -3,6 +3,7 @@ package com.sumutella.recipe.controller;
 import com.sumutella.recipe.dto.RecipeDto;
 import com.sumutella.recipe.services.IngredientService;
 import com.sumutella.recipe.services.RecipeService;
+import com.sumutella.recipe.services.UnitOfMeasureService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -28,6 +29,9 @@ class IngredientControllerTest {
     @Mock
     IngredientService ingredientService;
 
+    @Mock
+    UnitOfMeasureService unitOfMeasureService;
+
     IngredientController controller;
 
     MockMvc mockMvc;
@@ -36,7 +40,7 @@ class IngredientControllerTest {
     void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        controller = new IngredientController( recipeService, ingredientService);
+        controller = new IngredientController( recipeService, ingredientService, unitOfMeasureService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 

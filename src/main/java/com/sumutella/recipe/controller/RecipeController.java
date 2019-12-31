@@ -2,7 +2,6 @@ package com.sumutella.recipe.controller;
 
 import com.sumutella.recipe.dto.RecipeDto;
 import com.sumutella.recipe.mapper.RecipeMapper;
-import com.sumutella.recipe.model.Recipe;
 import com.sumutella.recipe.services.RecipeService;
 import lombok.extern.slf4j.Slf4j;
 import org.mapstruct.factory.Mappers;

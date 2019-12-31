@@ -1,14 +1,12 @@
 package com.sumutella.recipe.services;
 
 import com.sumutella.recipe.dto.IngredientDto;
-import com.sumutella.recipe.mapper.RecipeMapper;
 import com.sumutella.recipe.model.Ingredient;
 import com.sumutella.recipe.model.Recipe;
 import com.sumutella.recipe.repository.RecipeRepository;
+import com.sumutella.recipe.repository.UnitOfMeasureRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mapstruct.Mapper;
-import org.mapstruct.factory.Mappers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -27,14 +25,17 @@ class IngredientServiceImplTest {
 
     @Mock
     RecipeRepository recipeRepository;
+    @Mock
+    UnitOfMeasureRepository unitOfMeasureRepository;
+
     IngredientService ingredientService;
 
 
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         MockitoAnnotations.initMocks(this);
-        ingredientService = new IngredientServiceImpl(recipeRepository);
+        ingredientService = new IngredientServiceImpl(recipeRepository, unitOfMeasureRepository);
     }
 
     @Test

@@ -1,6 +1,7 @@
 package com.sumutella.recipe.services;
 
 import com.sumutella.recipe.dto.IngredientDto;
+import com.sumutella.recipe.model.Ingredient;
 
 /**
  * @author sumutella
@@ -9,4 +10,5 @@ import com.sumutella.recipe.dto.IngredientDto;
  */
 public interface IngredientService {
     IngredientDto findIngredientByRecipeIdAndIngredientId(Long recipeId, Long ingredientId);
+    IngredientDto savedIngredientDto(Long recipeId, IngredientDto ingredientDto);
 }
