@@ -1,6 +1,9 @@
 package com.sumutella.recipe.controller;
 
 import com.sumutella.recipe.dto.IngredientDto;
+import com.sumutella.recipe.dto.RecipeDto;
+import com.sumutella.recipe.dto.UnitOfMeasureDto;
+import com.sumutella.recipe.model.Ingredient;
 import com.sumutella.recipe.services.IngredientService;
 import com.sumutella.recipe.services.RecipeService;
 import com.sumutella.recipe.services.UnitOfMeasureService;
@@ -63,6 +66,17 @@ public class IngredientController {
         log.debug("saved ingredient id:" + savedIngredientDto.getId());
 
         return "redirect:/recipe/" + recipeId + "/ingredient/" + savedIngredientDto.getId() + "/show";
+    }
+
+    @RequestMapping("recipe/{recipeId}/ingredient/new")
+    public String newIngredient(@PathVariable Long recipeId, Model model){
+        IngredientDto ingredientDto = new IngredientDto();
+        ingredientDto.setUnitOfMeasure(new UnitOfMeasureDto());
+        model.addAttribute("ingredient", ingredientDto);
+        model.addAttribute("recipeId", recipeId);
+        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
+
+        return "recipe/ingredient/ingredient-form";
     }
 
 }
