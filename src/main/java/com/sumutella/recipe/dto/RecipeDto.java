@@ -23,6 +23,7 @@ public class RecipeDto {
     private String source;
     private String url;
     private String directions;
+    private Byte[] image;
     private List<IngredientDto> ingredients = new ArrayList<>();
     private Difficulty difficulty;
     private NoteDto note;
