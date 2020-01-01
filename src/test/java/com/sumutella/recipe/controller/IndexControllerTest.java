@@ -1,6 +1,7 @@
 package com.sumutella.recipe.controller;
 
 import com.sumutella.recipe.model.Recipe;
+import com.sumutella.recipe.services.IngredientService;
 import com.sumutella.recipe.services.RecipeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,20 +32,24 @@ class IndexControllerTest {
     @Mock
     RecipeService recipeService;
     @Mock
+    IngredientService ingredientService;
+    @Mock
     Model model;
 
+    MockMvc mockMvc;
     IndexController indexController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.initMocks(this);
         indexController =new IndexController(recipeService);
+        mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
+
     }
 
 
     @Test
     void testMockMVC() throws Exception{
-        MockMvc mockMvc = MockMvcBuilders.standaloneSetup(indexController).build();
         mockMvc.perform(get("/")).andExpect(status().isOk())
                 .andExpect(view().name("index"));
     }
@@ -67,7 +72,16 @@ class IndexControllerTest {
 
         verify(recipeService, times(1)).getRecipes();
         verify(model, times(1)).addAttribute(eq("recipes"), anyList());
-
-
     }
+
+//    @Test
+//    void deleteIngredient() throws Exception {
+//        //then
+//        mockMvc.perform(get("/recipe/2/ingredient/11/delete")
+//        )
+//                .andExpect(status().is3xxRedirection())
+//                .andExpect(view().name("redirect:/recipe/2/ingredients"));
+//
+//        verify(ingredientService, times(1)).deleteById( anyLong());
+//    }
 }
