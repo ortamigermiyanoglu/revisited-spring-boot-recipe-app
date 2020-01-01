@@ -58,4 +58,11 @@ public class IngredientServiceImpl implements IngredientService {
 
         return ingredientMapper.entityToDto(savedIngredient);
     }
+
+    @Override
+    public void deleteById(Long ingredientId) {
+        log.debug("Deleting ingredient: :" + ingredientId);
+        ingredientRepository.deleteById(ingredientId);
+    }
+
 }

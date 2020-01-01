@@ -11,4 +11,5 @@ import com.sumutella.recipe.model.Ingredient;
 public interface IngredientService {
     IngredientDto findIngredientByRecipeIdAndIngredientId(Long recipeId, Long ingredientId);
     IngredientDto savedIngredientDto(Long recipeId, IngredientDto ingredientDto);
+    void deleteById(Long ingredientId);
 }
