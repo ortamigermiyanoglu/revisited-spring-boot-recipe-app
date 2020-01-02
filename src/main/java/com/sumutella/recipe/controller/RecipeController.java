@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 @Controller
 public class RecipeController {
     private final RecipeService recipeService;
-    private final RecipeMapper recipeMapper = Mappers.getMapper(RecipeMapper.class);
 
     public RecipeController(RecipeService recipeService) {
         this.recipeService = recipeService;
